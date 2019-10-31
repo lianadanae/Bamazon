@@ -6,13 +6,13 @@ require("console.table");
 //Connects to the database
 var connection = mysql.createConnection({
     host: "localhost",
-    port: ,
+    port: 3306,
 
 //Username
 user: "root",
 
 //Password
-password: "",
+password: "ChowDa2019!",
 database: "bamazon_db"
 });
 
@@ -24,3 +24,12 @@ connection.connect(function(err) {
     displayProducts();
   
   });
+
+  function displayProducts() {
+      connection.query("SELECT * FROM products", function(err, res) {
+          if (err) throw err;
+          console.table(res);
+          promptCustomerForItem(res);
+        });
+      }
+      
